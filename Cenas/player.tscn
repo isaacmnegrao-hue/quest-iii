@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://dqtlwb8d7sgq"]
+
+[ext_resource type="Script" uid="uid://cqhl6v6cqp1ml" path="res://Cenas/player.gd" id="1_e2nbm"]
+[ext_resource type="Script" uid="uid://pf086pco02v2" path="res://Cenas/animated_sprite_2d.gd" id="9_ybr15"]
+[ext_resource type="Texture2D" path="res://Sprites/macaco_idle.png" id="m_idle"]
+[ext_resource type="Texture2D" path="res://Sprites/macaco_run1.png" id="m_run1"]
+[ext_resource type="Texture2D" path="res://Sprites/macaco_run3.png" id="m_run3"]
+[ext_resource type="Texture2D" path="res://Sprites/macaco_jump.png" id="m_jump"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wreb2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("m_idle")
+}],
+"loop": true,
+"name": &"small_death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("m_idle")
+}],
+"loop": true,
+"name": &"small_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("m_jump")
+}],
+"loop": true,
+"name": &"small_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("m_run1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("m_idle")
+}, {
+"duration": 1.0,
+"texture": ExtResource("m_run3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("m_idle")
+}],
+"loop": true,
+"name": &"small_run",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("m_run1")
+}],
+"loop": true,
+"name": &"small_slide",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bb2x8"]
+size = Vector2(12, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cabeca"]
+size = Vector2(12, 4)
+
+[node name="Player" type="CharacterBody2D" unique_id=789689854]
+collision_mask = 62
+script = ExtResource("1_e2nbm")
+speed = 150.0
+run_speed_damping = 12.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=194889111]
+sprite_frames = SubResource("SpriteFrames_wreb2")
+animation = &"small_idle"
+offset = Vector2(0, -4)
+script = ExtResource("9_ybr15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=811991951]
+shape = SubResource("RectangleShape2D_bb2x8")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1365000900]
+collision_mask = 76
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=925869973]
+shape = SubResource("RectangleShape2D_bb2x8")
+
+[node name="Cabeca" type="AnimatableBody2D" parent="." unique_id=1365000950]
+collision_layer = 32
+collision_mask = 0
+sync_to_physics = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cabeca" unique_id=1365000951]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_cabeca")
+one_way_collision = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

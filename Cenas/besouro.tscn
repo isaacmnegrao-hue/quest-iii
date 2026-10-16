@@ -1,0 +1,50 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://Sprites/besouro_amassado.png" id="1_11lup"]
+[ext_resource type="Script" path="res://Cenas/besouro.gd" id="1_jg8wq"]
+[ext_resource type="Texture2D" path="res://Sprites/besouro1.png" id="2_jg8wq"]
+[ext_resource type="Texture2D" path="res://Sprites/besouro2.png" id="3_w2rut"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8y7kw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_11lup")
+}],
+"loop": 1,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jg8wq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w2rut")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i8vh1"]
+radius = 8.0
+
+[node name="Besouro" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_jg8wq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8y7kw")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i8vh1")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 8)
+collision_mask = 18
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+

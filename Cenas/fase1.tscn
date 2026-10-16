@@ -1,0 +1,108 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://Cenas/main.gd" id="1_m2fnr"]
+[ext_resource type="Script" path="res://Cenas/camera.gd" id="2_hm8q3"]
+[ext_resource type="Texture2D" path="res://Sprites/fundo_fase.png" id="3_4r2p4"]
+[ext_resource type="TileSet" path="res://Cenas/tileset_arvore.tres" id="4_h8lng"]
+[ext_resource type="PackedScene" path="res://Cenas/player.tscn" id="5_8ve6q"]
+[ext_resource type="PackedScene" path="res://Cenas/caixa.tscn" id="6_wfiab"]
+[ext_resource type="PackedScene" path="res://Cenas/cipo.tscn" id="7_vhn7i"]
+[ext_resource type="PackedScene" path="res://Cenas/casa.tscn" id="8_urk3f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rn71"]
+size = Vector2(16, 3000)
+
+[node name="Fase1" type="Node" unique_id=2035482623]
+script = ExtResource("1_m2fnr")
+total_entregas = 1
+tempo_total = 300
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1110471990]
+position = Vector2(0, -8)
+zoom = Vector2(2.75, 2.75)
+limit_bottom = 48
+position_smoothing_enabled = true
+script = ExtResource("2_hm8q3")
+
+[node name="Fundo" type="Sprite2D" parent="." unique_id=438683814]
+z_index = -10
+position = Vector2(0, -852)
+scale = Vector2(4, 4)
+texture = ExtResource("3_4r2p4")
+
+[node name="Arvores" type="TileMapLayer" parent="." unique_id=296697361]
+z_index = -1
+tile_map_data = PackedByteArray("AAALAPT/AwAAAAAAAAAMAPT/AwAAAAAAAAALAPX/AwAAAAAAAAAMAPX/AwAAAAAAAAALAPb/AwAAAAAAAAAMAPb/AwAAAAAAAAALAPf/AwAAAAAAAAAMAPf/AwAAAAAAAAALAPj/AwAAAAAAAAAMAPj/AwAAAAAAAAALAPn/AwAAAAAAAAAMAPn/AwAAAAAAAAALAPr/AwAAAAAAAAAMAPr/AwAAAAAAAAALAPv/AwAAAAAAAAAMAPv/AwAAAAAAAAALAPz/AwAAAAAAAAAMAPz/AwAAAAAAAAALAP3/AwAAAAAAAAAMAP3/AwAAAAAAAAALAP7/AwAAAAAAAAAMAP7/AwAAAAAAAAALAP//AwAAAAAAAAAMAP//AwAAAAAAAAAIAPL/BAAAAAAAAAAJAPL/BAAAAAAAAAAKAPL/BAAAAAAAAAALAPL/BAAAAAAAAAAMAPL/BAAAAAAAAAAIAPP/BAAAAAAAAAAJAPP/BAAAAAAAAAAKAPP/BAAAAAAAAAALAPP/BAAAAAAAAAAMAPP/BAAAAAAAAAA=")
+tile_set = ExtResource("4_h8lng")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1955420641]
+tile_map_data = PackedByteArray("AADz/wAAAgAAAAAAAADz/wEAAAAAAAAAAADz/wIAAAAAAAAAAAD0/wAAAgAAAAAAAAD0/wEAAAAAAAAAAAD0/wIAAAAAAAAAAAD1/wAAAgAAAAAAAAD1/wEAAAAAAAAAAAD1/wIAAAAAAAAAAAD2/wAAAgAAAAAAAAD2/wEAAAAAAAAAAAD2/wIAAAAAAAAAAAD3/wAAAgAAAAAAAAD3/wEAAAAAAAAAAAD3/wIAAAAAAAAAAAD4/wAAAgAAAAAAAAD4/wEAAAAAAAAAAAD4/wIAAAAAAAAAAAD5/wAAAgAAAAAAAAD5/wEAAAAAAAAAAAD5/wIAAAAAAAAAAAD6/wAAAgAAAAAAAAD6/wEAAAAAAAAAAAD6/wIAAAAAAAAAAAD7/wAAAgAAAAAAAAD7/wEAAAAAAAAAAAD7/wIAAAAAAAAAAAD8/wAAAgAAAAAAAAD8/wEAAAAAAAAAAAD8/wIAAAAAAAAAAAD9/wAAAgAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wAAAgAAAAAAAAD+/wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD//wAAAgAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAAAAgAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAAAAgAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAADAAAAAgAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAAAAgAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAAAAgAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAAAAgAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAAAAgAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAIAAAAAgAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAJAAAAAgAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAKAAAAAgAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAALAAAAAgAAAAAAAAALAAEAAAAAAAAAAAALAAIAAAAAAAAAAAAMAAAAAgAAAAAAAAAMAAEAAAAAAAAAAAAMAAIAAAAAAAAAAAD9//v/AQAAAAAAAAD+//v/AQAAAAAAAAD///v/AQAAAAAAAAAAAPv/AQAAAAAAAAABAPv/AQAAAAAAAAACAPv/AQAAAAAAAAADAPv/AQAAAAAAAAAEAPv/AQAAAAAAAAAFAPv/AQAAAAAAAAAGAPv/AQAAAAAAAAAHAPv/AQAAAAAAAAAIAPv/AQAAAAAAAAAJAPv/AQAAAAAAAAAKAPv/AQAAAAAAAAA=")
+tile_set = ExtResource("4_h8lng")
+
+[node name="Paredes" type="Node" parent="." unique_id=399492488]
+
+[node name="ParedeEsquerda" type="StaticBody2D" parent="Paredes" unique_id=1663772406]
+position = Vector2(-216, -1300)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/ParedeEsquerda" unique_id=842723187]
+shape = SubResource("RectangleShape2D_7rn71")
+
+[node name="ParedeDireita" type="StaticBody2D" parent="Paredes" unique_id=678713707]
+position = Vector2(216, -1300)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/ParedeDireita" unique_id=554906302]
+shape = SubResource("RectangleShape2D_7rn71")
+
+[node name="Pipo" parent="." unique_id=789689854 instance=ExtResource("5_8ve6q")]
+z_index = 1
+position = Vector2(-160, -8)
+jump_velocity = -370.0
+
+[node name="Nina" parent="." unique_id=127775542 instance=ExtResource("5_8ve6q")]
+z_index = 1
+position = Vector2(-130, -12)
+scale = Vector2(1.5, 1.5)
+prefixo = "p2"
+jump_velocity = -280.0
+cabeca_e_plataforma = true
+forte = true
+cor = Color(0.75, 0.6, 1, 1)
+
+[node name="Caixas" type="Node" parent="." unique_id=858418405]
+
+[node name="Caixa1" parent="Caixas" unique_id=619229386 instance=ExtResource("6_wfiab")]
+position = Vector2(-100, -6)
+
+[node name="Cipo1" parent="." unique_id=1466314081 instance=ExtResource("7_vhn7i")]
+position = Vector2(-40, -80)
+
+[node name="Casas" type="Node" parent="." unique_id=931572828]
+
+[node name="Casa1" parent="Casas" unique_id=709916638 instance=ExtResource("8_urk3f")]
+position = Vector2(150, -80)
+
+[node name="Timer" type="Timer" parent="." unique_id=679299268]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=425454922]
+
+[node name="LabelEntregas" type="Label" parent="HUD" unique_id=2082507337]
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 320.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 28
+text = "Caixas: 0/1"
+
+[node name="LabelTempo" type="Label" parent="HUD" unique_id=1635752838]
+offset_left = 20.0
+offset_top = 52.0
+offset_right = 320.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 28
+text = "Tempo: 300"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

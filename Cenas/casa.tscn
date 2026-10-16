@@ -1,0 +1,44 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Cenas/casa.gd" id="1_casa"]
+[ext_resource type="Texture2D" path="res://Sprites/casa_arvore.png" id="2_casa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_casa"]
+size = Vector2(22, 26)
+
+[node name="Casa" type="Area2D"]
+script = ExtResource("1_casa")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("2_casa")
+
+[node name="Check" type="Label" parent="."]
+visible = false
+offset_left = -12.0
+offset_top = -46.0
+offset_right = 12.0
+offset_bottom = -28.0
+theme_override_colors/font_color = Color(0.2, 0.9, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 14
+text = "OK!"
+
+[node name="Aviso" type="Label" parent="."]
+visible = false
+offset_left = -40.0
+offset_top = -60.0
+offset_right = 40.0
+offset_bottom = -44.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 10
+text = "Chame o amigo!"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_casa")
+
